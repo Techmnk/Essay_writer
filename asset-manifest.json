@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Essay_writer/static/css/main.f5874732.chunk.css",
+    "main.js": "/Essay_writer/static/js/main.13fd57e4.chunk.js",
+    "main.js.map": "/Essay_writer/static/js/main.13fd57e4.chunk.js.map",
+    "runtime-main.js": "/Essay_writer/static/js/runtime-main.d3db076f.js",
+    "runtime-main.js.map": "/Essay_writer/static/js/runtime-main.d3db076f.js.map",
+    "static/css/2.150d169a.chunk.css": "/Essay_writer/static/css/2.150d169a.chunk.css",
+    "static/js/2.6f6e9bef.chunk.js": "/Essay_writer/static/js/2.6f6e9bef.chunk.js",
+    "static/js/2.6f6e9bef.chunk.js.map": "/Essay_writer/static/js/2.6f6e9bef.chunk.js.map",
+    "static/js/3.cc89ad9f.chunk.js": "/Essay_writer/static/js/3.cc89ad9f.chunk.js",
+    "static/js/3.cc89ad9f.chunk.js.map": "/Essay_writer/static/js/3.cc89ad9f.chunk.js.map",
+    "index.html": "/Essay_writer/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/Essay_writer/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.f5874732.chunk.css.map": "/Essay_writer/static/css/main.f5874732.chunk.css.map",
+    "static/js/2.6f6e9bef.chunk.js.LICENSE.txt": "/Essay_writer/static/js/2.6f6e9bef.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d3db076f.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.6f6e9bef.chunk.js",
+    "static/css/main.f5874732.chunk.css",
+    "static/js/main.13fd57e4.chunk.js"
+  ]
+}
