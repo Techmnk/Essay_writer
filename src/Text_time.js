@@ -6,6 +6,7 @@ import "./Text_time.css"
 
 function Text_time() {
     const [count, setcount] = useState(0)
+    const [para, setpara] = useState(0)
     const [time, setTime] = useState({ ms: 0, s: 0, m: 0, h: 0 });
     const [interv, setInterv] = useState();
     const [status, setStatus] = useState(0);
@@ -80,27 +81,37 @@ function Text_time() {
     };
 
 
-    // const stoptimer = () => {
-    //     if (count === 10) {
 
-    //     }
-    // }
+
+
+    var main_words = 300;
+    var cal = (count / main_words) * 100;
+    cal = cal | 0;
+
+    function win_the_game() {
+        if (main_words === count) {
+            <div class="alert alert-success" role="alert">
+                A simple success alert—check it out!
+            </div>
+            stop()
+        }
+    }
 
     const progress = () => {
         var color = ""
-        if (count <= 25) {
+        if (cal <= 25) {
             color = "warning"
         }
 
-        if (count > 25 && count <= 50) {
+        if (cal > 25 && cal <= 50) {
             color = "info"
         }
 
-        if (count > 50 && count <= 75) {
+        if (cal > 50 && cal <= 75) {
             color = "primary"
         }
 
-        if (count > 75 && count <= 100) {
+        if (cal > 75 && cal <= 100) {
             color = "success"
         }
 
@@ -114,9 +125,9 @@ function Text_time() {
         <div className="text_time">
             <div className="text_area">
                 <textarea onChange={getWordCount} class="form-control" id="exampleFormControlTextarea1 myinput" rows="15"></textarea>
-                <p>{count}</p>
+                <h4 className="count_button">Word Count: {count}</h4>
                 <div className="progress">
-                    <div className={`progress-bar bg-${progress()}`} aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style={{ width: `${count}%` }}></div>
+                    <div className={`progress-bar bg-${progress()}`} aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style={{ width: `${cal}%` }}></div>
                 </div>
             </div>
 
