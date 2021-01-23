@@ -12,18 +12,12 @@ function push() {
     document.getElementById("change").innerHTML = x;
 }
 
-
-
-
-
-
-
 function Api_fetch() {
     return (
-        <div>
+        <div className="api_fetch">
             <div className="d-grid gap-2 col-6 mx-auto">
                 <button onClick={push} className="btn btn-warning">Choose Random Topic</button>
-                <h1 id="change">_________</h1>
+                <h3 id="change">_________</h3>
             </div>
 
         </div>

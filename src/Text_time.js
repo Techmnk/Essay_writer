@@ -53,18 +53,18 @@ function Text_time() {
 
 
 
-    var counterstart = (function () {
-        var executed = false;
-        return function () {
-            if (!executed) {
-                executed = true;
-                if (count === 1) {
-                    start()
+    // var counterstart = (function () {
+    //     var executed = false;
+    //     return function () {
+    //         if (!executed) {
+    //             executed = true;
+    //             if (count === 1) {
+    //                 start()
 
-                }
-            }
-        };
-    })();
+    //             }
+    //         }
+    //     };
+    // })();
 
 
 
@@ -80,10 +80,11 @@ function Text_time() {
     };
 
 
-    const oncalls = e => {
-        counterstart()
-        getWordCount(e)
-    }
+    // const stoptimer = () => {
+    //     if (count === 10) {
+
+    //     }
+    // }
 
     const progress = () => {
         var color = ""
@@ -112,18 +113,12 @@ function Text_time() {
     return (
         <div className="text_time">
             <div className="text_area">
-                <textarea onChange={oncalls} class="form-control" id="exampleFormControlTextarea1 myinput" rows="15"></textarea>
+                <textarea onChange={getWordCount} class="form-control" id="exampleFormControlTextarea1 myinput" rows="15"></textarea>
                 <p>{count}</p>
                 <div className="progress">
                     <div className={`progress-bar bg-${progress()}`} aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style={{ width: `${count}%` }}></div>
                 </div>
             </div>
-
-
-
-
-
-
 
 
             <div className="stop_watch">
