@@ -7,6 +7,7 @@ import "./Text_time.css"
 function Text_time() {
     const [count, setcount] = useState(0)
     const [para, setpara] = useState(0)
+    const [sent, setsent] = useState(0)
     const [time, setTime] = useState({ ms: 0, s: 0, m: 0, h: 0 });
     const [interv, setInterv] = useState();
     const [status, setStatus] = useState(0);
@@ -76,7 +77,18 @@ function Text_time() {
         const numWords = e.target.value.split(" ").filter(item => {
             return item !== "";
         });
+
+        const numParas = e.target.value.split(/\r?\n|\r/).filter(item => {
+            return item !== "";
+        });
+
+        const numSent = e.target.value.split(".").filter(item => {
+            return item !== "";
+        });
+
         setcount(numWords.length);
+        setpara(numParas.length);
+        setsent(numSent.length);
 
     };
 
@@ -88,14 +100,14 @@ function Text_time() {
     var cal = (count / main_words) * 100;
     cal = cal | 0;
 
-    function win_the_game() {
-        if (main_words === count) {
-            <div class="alert alert-success" role="alert">
-                A simple success alert—check it out!
-            </div>
-            stop()
-        }
-    }
+    // function win_the_game() {
+    //     if (main_words === count) {
+    //         <div class="alert alert-success" role="alert">
+    //             A simple success alert—check it out!
+    //         </div>
+    //         stop()
+    //     }
+    // }
 
     const progress = () => {
         var color = ""
@@ -125,8 +137,7 @@ function Text_time() {
         <div className="text_time">
             <div className="text_area">
                 <textarea onChange={getWordCount} class="form-control" id="exampleFormControlTextarea1 myinput" rows="15"></textarea>
-                <h4 className="count_button">Word Count: {count}</h4>
-                <div className="progress">
+                <div className="progress progress-lg">
                     <div className={`progress-bar bg-${progress()}`} aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style={{ width: `${cal}%` }}></div>
                 </div>
             </div>
@@ -140,7 +151,11 @@ function Text_time() {
                             <Stopwatch_Btn status={status} resume={resume} reset={reset} stop={stop} start={start} />
                         </div>
                     </div>
+                    <h4 className="count_button">Words: {count} </h4>
+                    <h4 className="count_button">Sentences: {sent} </h4>
+                    <h4 className="count_button">Paragraphs: {para} </h4>
                 </div>
+
             </div>
         </div>
     )

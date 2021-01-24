@@ -67,3 +67,9 @@
     background-color: black;
     color: aliceblue;
 }
+
+.progress-lg {
+  height: 1.5rem!important;
+  margin: 15px 0px 15px 0px;
+  border-radius: 0.5rem;
+}

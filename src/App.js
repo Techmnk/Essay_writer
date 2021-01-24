@@ -2,7 +2,6 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 import Text_time from './Text_time';
 import Api_fetch from './Api_fetch';
-import Instructions from './Instructions';
 
 
 
@@ -15,7 +14,7 @@ function App() {
 
     <div className="App">
 
-      <h2>Essay Writing</h2>
+      <h2>Essay Writing Practice </h2>
       <Api_fetch />
       <Text_time />
 
