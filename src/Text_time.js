@@ -8,7 +8,9 @@ function Text_time() {
     const [count, setcount] = useState(0)
     const [para, setpara] = useState(0)
     const [sent, setsent] = useState(0)
-    const [time, setTime] = useState({ ms: 0, s: 0, m: 0, h: 0 });
+    const [char, setchar] = useState(0)
+    const [del, setdel] = useState(0)
+    const [time, setTime] = useState({ ms: 0, s: 0, m: 10, h: 0 });
     const [interv, setInterv] = useState();
     const [status, setStatus] = useState(0);
     // Not started = 0
@@ -24,16 +26,16 @@ function Text_time() {
     var updatedMs = time.ms, updatedS = time.s, updatedM = time.m, updatedH = time.h;
 
     const run = () => {
-        if (updatedM === 60) {
-            updatedH++;
-            updatedM = 0;
+        if (updatedM === 0) {
+            updatedH--;
+            updatedM = 60;
         }
-        if (updatedS === 60) {
-            updatedM++;
-            updatedS = 0;
+        if (updatedS === 0) {
+            updatedM--;
+            updatedS = 60;
         }
         if (updatedMs === 100) {
-            updatedS++;
+            updatedS--;
             updatedMs = 0;
         }
         updatedMs++;
@@ -69,11 +71,14 @@ function Text_time() {
     // })();
 
 
-
-
-
-
     const getWordCount = (e) => {
+
+        // const chars = e.target.value.split("").filter(item => {
+        //     return item !== "";
+        // });
+
+        const withOutSpace = e.target.value.replace(/\s+/g, '');
+
         const numWords = e.target.value.split(" ").filter(item => {
             return item !== "";
         });
@@ -86,13 +91,34 @@ function Text_time() {
             return item !== "";
         });
 
+
+        setchar(withOutSpace.length);
         setcount(numWords.length);
         setpara(numParas.length);
         setsent(numSent.length);
 
     };
 
+   
 
+
+    const hotkeys = (e) => {
+        
+        if(e.keyCode === 8 || e.keyCode === 46){
+            setdel(del+1);
+        }
+
+        if(char === 0){
+            setdel(0)  
+        }
+
+        // if (del === 0){
+        //     alert("You have no backspace left!!")
+        //     stop()
+        //     window.location.reload();      
+
+        // }
+    }
 
 
 
@@ -129,34 +155,59 @@ function Text_time() {
 
         return color;
     }
+    
+const setten = () =>{
+    setTime({ ms: 0, s: 0, m: 10, h: 0 })
+}
 
+const settwenty = () =>{
+    setTime({ ms: 0, s: 0, m: 20, h: 0 })
+}
 
+const setthirty = () =>{
+    setTime({ ms: 0, s: 0, m: 30, h: 0 })
+}
 
+const setforty = () =>{
+    setTime({ ms: 0, s: 0, m: 40, h: 0 })
+}
 
     return (
         <div className="text_time">
+
             <div className="text_area">
-                <textarea onChange={getWordCount} class="form-control" id="exampleFormControlTextarea1 myinput" rows="15"></textarea>
+                <textarea onKeyDown={hotkeys} onChange={getWordCount} class="form-control" id="exampleFormControlTextarea1 myinput" rows="15"></textarea>
                 <div className="progress progress-lg">
                     <div className={`progress-bar bg-${progress()}`} aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style={{ width: `${cal}%` }}></div>
                 </div>
+                
             </div>
 
-
-            <div className="stop_watch">
+   
                 <div className="main-section">
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                        <button onClick={setten} type="button" class="btn btn-outline-success">10 min</button>
+                        <button onClick={settwenty} type="button" class="btn btn-outline-info">20 min</button>
+                        <button onClick={setthirty} type="button" class="btn btn-outline-warning">30 min</button>
+                        <button onClick={setforty} type="button" class="btn btn-outline-danger">40 min</button>
+                    </div>
+                    
                     <div className="clock-holder">
                         <div className="stopwatch">
                             <Displaywatch time={time} />
                             <Stopwatch_Btn status={status} resume={resume} reset={reset} stop={stop} start={start} />
                         </div>
                     </div>
-                    <h4 className="count_button">Words: {count} </h4>
-                    <h4 className="count_button">Sentences: {sent} </h4>
-                    <h4 className="count_button">Paragraphs: {para} </h4>
+
+                    {/* <h4 className="count_button">Characters: {char} </h4> */}
+                    <h5 className="count_button">Words: {count} </h5>
+                    <h5 className="count_button">Sentences: {sent} </h5>
+                    <h5 className="count_button">Paragraphs: {para} </h5>
+                    <h5 className="count_button">Backspace used: {del}</h5>
+
                 </div>
 
-            </div>
+            
         </div>
     )
 }
