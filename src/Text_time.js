@@ -10,7 +10,7 @@ function Text_time() {
     const [sent, setsent] = useState(0)
     const [char, setchar] = useState(0)
     const [del, setdel] = useState(0)
-    const [time, setTime] = useState({ ms: 0, s: 0, m: 10, h: 0 });
+    const [time, setTime] = useState({ ms: 0, s: 0, m: 0});
     const [interv, setInterv] = useState();
     const [status, setStatus] = useState(0);
     // Not started = 0
@@ -23,23 +23,22 @@ function Text_time() {
         setInterv(setInterval(run, 10));
     };
 
-    var updatedMs = time.ms, updatedS = time.s, updatedM = time.m, updatedH = time.h;
+    var updatedMs = time.ms, updatedS = time.s, updatedM = time.m;
 
     const run = () => {
-        if (updatedM === 0) {
-            updatedH--;
-            updatedM = 60;
+        if (updatedM === 60) {
+            updatedM = 0;
         }
-        if (updatedS === 0) {
-            updatedM--;
-            updatedS = 60;
+        if (updatedS === 60) {
+            updatedM++;
+            updatedS = 0;
         }
         if (updatedMs === 100) {
-            updatedS--;
+            updatedS++;
             updatedMs = 0;
         }
         updatedMs++;
-        return setTime({ ms: updatedMs, s: updatedS, m: updatedM, h: updatedH });
+        return setTime({ ms: updatedMs, s: updatedS, m: updatedM});
     };
 
     const stop = () => {
@@ -50,11 +49,10 @@ function Text_time() {
     const reset = () => {
         clearInterval(interv);
         setStatus(0);
-        setTime({ ms: 0, s: 0, m: 0, h: 0 })
+        setTime({ ms: 0, s: 0, m: 0})
     };
 
     const resume = () => start();
-
 
 
     // var counterstart = (function () {
@@ -108,6 +106,8 @@ function Text_time() {
             setdel(del+1);
         }
 
+        
+
         if(char === 0){
             setdel(0)  
         }
@@ -155,22 +155,7 @@ function Text_time() {
 
         return color;
     }
-    
-const setten = () =>{
-    setTime({ ms: 0, s: 0, m: 10, h: 0 })
-}
 
-const settwenty = () =>{
-    setTime({ ms: 0, s: 0, m: 20, h: 0 })
-}
-
-const setthirty = () =>{
-    setTime({ ms: 0, s: 0, m: 30, h: 0 })
-}
-
-const setforty = () =>{
-    setTime({ ms: 0, s: 0, m: 40, h: 0 })
-}
 
     return (
         <div className="text_time">
@@ -185,12 +170,12 @@ const setforty = () =>{
 
    
                 <div className="main-section">
-                    <div class="btn-group me-2" role="group" aria-label="First group">
-                        <button onClick={setten} type="button" class="btn btn-outline-success">10 min</button>
+                    {/* <div class="btn-group me-2" role="group" aria-label="First group">
+                        <button onChange={setten} type="button" class="btn btn-outline-success">10 min</button>
                         <button onClick={settwenty} type="button" class="btn btn-outline-info">20 min</button>
                         <button onClick={setthirty} type="button" class="btn btn-outline-warning">30 min</button>
                         <button onClick={setforty} type="button" class="btn btn-outline-danger">40 min</button>
-                    </div>
+                    </div> */}
                     
                     <div className="clock-holder">
                         <div className="stopwatch">
