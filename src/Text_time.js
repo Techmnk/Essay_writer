@@ -10,7 +10,7 @@ function Text_time() {
     const [sent, setsent] = useState(0)
     const [char, setchar] = useState(0)
     const [del, setdel] = useState(0)
-    const [time, setTime] = useState({ ms: 0, s: 0, m: 0});
+    const [time, setTime] = useState({ ms: 0, s: 0, m: 0 });
     const [interv, setInterv] = useState();
     const [status, setStatus] = useState(0);
     // Not started = 0
@@ -38,7 +38,7 @@ function Text_time() {
             updatedMs = 0;
         }
         updatedMs++;
-        return setTime({ ms: updatedMs, s: updatedS, m: updatedM});
+        return setTime({ ms: updatedMs, s: updatedS, m: updatedM });
     };
 
     const stop = () => {
@@ -49,7 +49,7 @@ function Text_time() {
     const reset = () => {
         clearInterval(interv);
         setStatus(0);
-        setTime({ ms: 0, s: 0, m: 0})
+        setTime({ ms: 0, s: 0, m: 0 })
     };
 
     const resume = () => start();
@@ -77,7 +77,7 @@ function Text_time() {
 
         const withOutSpace = e.target.value.replace(/\s+/g, '');
 
-        const numWords = e.target.value.split(" ").filter(item => {
+        const numWords = e.target.value.split(/\r?\n|\r|\s/).filter(item => {
             return item !== "";
         });
 
@@ -85,7 +85,7 @@ function Text_time() {
             return item !== "";
         });
 
-        const numSent = e.target.value.split(".").filter(item => {
+        const numSent = e.target.value.split(/[.]|[!]|[?]/).filter(item => {
             return item !== "";
         });
 
@@ -97,19 +97,19 @@ function Text_time() {
 
     };
 
-   
+
 
 
     const hotkeys = (e) => {
-        
-        if(e.keyCode === 8 || e.keyCode === 46){
-            setdel(del+1);
+
+        if (e.keyCode === 8 || e.keyCode === 46) {
+            setdel(del + 1);
         }
 
-        
 
-        if(char === 0){
-            setdel(0)  
+
+        if (char === 0) {
+            setdel(0)
         }
 
         // if (del === 0){
@@ -165,34 +165,34 @@ function Text_time() {
                 <div className="progress progress-lg">
                     <div className={`progress-bar bg-${progress()}`} aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style={{ width: `${cal}%` }}></div>
                 </div>
-                
+
             </div>
 
-   
-                <div className="main-section">
-                    {/* <div class="btn-group me-2" role="group" aria-label="First group">
+
+            <div className="main-section">
+                {/* <div class="btn-group me-2" role="group" aria-label="First group">
                         <button onChange={setten} type="button" class="btn btn-outline-success">10 min</button>
                         <button onClick={settwenty} type="button" class="btn btn-outline-info">20 min</button>
                         <button onClick={setthirty} type="button" class="btn btn-outline-warning">30 min</button>
                         <button onClick={setforty} type="button" class="btn btn-outline-danger">40 min</button>
                     </div> */}
-                    
-                    <div className="clock-holder">
-                        <div className="stopwatch">
-                            <Displaywatch time={time} />
-                            <Stopwatch_Btn status={status} resume={resume} reset={reset} stop={stop} start={start} />
-                        </div>
+
+                <div className="clock-holder">
+                    <div className="stopwatch">
+                        <Displaywatch time={time} />
+                        <Stopwatch_Btn status={status} resume={resume} reset={reset} stop={stop} start={start} />
                     </div>
-
-                    {/* <h4 className="count_button">Characters: {char} </h4> */}
-                    <h5 className="count_button">Words: {count} </h5>
-                    <h5 className="count_button">Sentences: {sent} </h5>
-                    <h5 className="count_button">Paragraphs: {para} </h5>
-                    <h5 className="count_button">Backspace used: {del}</h5>
-
                 </div>
 
-            
+                {/* <h4 className="count_button">Characters: {char} </h4> */}
+                <h5 className="count_button">Words: {count} </h5>
+                <h5 className="count_button">Sentences: {sent} </h5>
+                <h5 className="count_button">Paragraphs: {para} </h5>
+                <h5 className="count_button">Backspace used: {del}</h5>
+
+            </div>
+
+
         </div>
     )
 }
